@@ -8,8 +8,8 @@ class DatasetCatalog(object):
     
     DATASETS = {
         'wireframe_train': {
-            'img_dir': 'wireframe/images',
-            'ann_file': 'wireframe/train.json',
+            'img_dir': '../../hawp/data/wireframe/images',
+            'ann_file': '../../hawp/data/wireframe/train.json',
         },
         'wireframe_train-pseudo': {
             'img_dir': 'wireframe-pseudo/images',

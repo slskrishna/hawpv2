@@ -55,9 +55,8 @@ class HAFMencoder(object):
         jmap = torch.from_numpy(jmap).to(device)
         joff = torch.from_numpy(joff).to(device)
 
-        edges_positive = ann['edges_positive']
-        edges_negative = ann['edges_negative']
-        
+        edges_positive = ann['edges_positive'].long()
+        edges_negative = ann['edges_negative'].long()
         pos_mat = self.adjacent_matrix(junctions.size(0),edges_positive,device)
         neg_mat = self.adjacent_matrix(junctions.size(0),edges_negative,device)        
         lines = torch.cat((junctions[edges_positive[:,0]], junctions[edges_positive[:,1]]),dim=-1)

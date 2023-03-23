@@ -24,16 +24,16 @@ def build_train_dataset(cfg):
     args = dargs['args']
     args['augmentation'] = cfg.DATASETS.AUGMENTATION
     args['transform'] = Compose(
-                                [Resize(cfg.DATASETS.IMAGE.HEIGHT,
-                                        cfg.DATASETS.IMAGE.WIDTH,
-                                        cfg.DATASETS.TARGET.HEIGHT,
-                                        cfg.DATASETS.TARGET.WIDTH),
-                                 ToTensor(),
-                                 Normalize(cfg.DATASETS.IMAGE.PIXEL_MEAN,
-                                           cfg.DATASETS.IMAGE.PIXEL_STD,
-                                           cfg.DATASETS.IMAGE.TO_255)])
+        [LetterBoxResize(cfg.DATASETS.IMAGE.HEIGHT,
+                         cfg.DATASETS.IMAGE.WIDTH,
+                         cfg.DATASETS.TARGET.HEIGHT,
+                         cfg.DATASETS.TARGET.WIDTH),
+         ToTensor(),
+         Normalize(cfg.DATASETS.IMAGE.PIXEL_MEAN,
+                   cfg.DATASETS.IMAGE.PIXEL_STD,
+                   cfg.DATASETS.IMAGE.TO_255)])
     dataset = factory(**args)
-    
+
     dataset = torch.utils.data.DataLoader(dataset,
                                           batch_size=cfg.SOLVER.IMS_PER_BATCH,
                                           collate_fn=train_dataset.collate_fn,
